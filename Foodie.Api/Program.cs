@@ -20,6 +20,11 @@ builder.Services.AddScoped<IIngredientRepository, IngredientRepository>(p =>
     var dataSource = p.GetRequiredService<DbDataSource>();
     return new IngredientRepository(dataSource.OpenConnection());
 });
+builder.Services.AddScoped<IUserRepository, UserRepository>(p =>
+{
+    var dataSource = p.GetRequiredService<DbDataSource>();
+    return new UserRepository(dataSource.OpenConnection());
+});
 
 var app = builder.Build();
 

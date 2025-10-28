@@ -5,4 +5,28 @@ CREATE Table Ingredient(
 	Protein INTEGER NOT NULL,
 	Sugar INTEGER NOT NULL,
 	Unit TEXT NOT NULL
-)
+);
+
+CREATE Table User(
+    UserId INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Email TEXT UNIQUE NOT NULL,
+    PasswordHash TEXT NOT NULL,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+);
+
+CREATE TABLE RefreshToken (
+    RefreshTokenId INTEGER PRIMARY KEY,
+    RefreshToken TEXT NOT NULL UNIQUE,
+    UserId TEXT NOT NULL,
+    ExpiresAt DATETIME NOT NULL,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+);
+
+CREATE TABLE AccessToken (
+    AccessTokenId INTEGER PRIMARY KEY,
+    AccessToken TEXT NOT NULL UNIQUE,
+    UserId TEXT NOT NULL,
+    ExpiresAt DATETIME NOT NULL,
+    CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+);
